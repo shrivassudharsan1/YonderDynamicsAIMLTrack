@@ -5,3 +5,9 @@ data/
 /.venv
 /sampled
 Sampled-YD-Object-Detection-*/
+
+# training outputs and local scratch
+runs/
+*.pt
+!weights/*.pt
+.DS_Store
