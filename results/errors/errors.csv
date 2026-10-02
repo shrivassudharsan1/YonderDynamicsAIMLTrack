@@ -1,0 +1,116 @@
+image,class,outcome,confidence
+200818-Waterbottle_1200x-copy-2_jpg.rf.fbc25f9131363bc71ec02a4fb4f9c1d2.jpg,bottle,FN,
+20231021_172921_jpg.rf.a4cd8d5f427e47ed6011f7e8f7700e7a.jpg,mallet,FP loose box,0.49
+20231021_172922_jpg.rf.3e5a776dc7570c4d79f827cc1b94e03a.jpg,mallet,FP loose box,0.34
+20231021_172922_jpg.rf.3e5a776dc7570c4d79f827cc1b94e03a.jpg,mallet,FP loose box,0.30
+20231021_172922_jpg.rf.3e5a776dc7570c4d79f827cc1b94e03a.jpg,mallet,FN,
+20231021_173705_jpg.rf.3515a07329fd20138f4bf586be79a43c.jpg,bottle,FP wrong class,0.35
+20231021_173844_jpg.rf.0490ca9ae9b239b421b08d3e67ec6450.jpg,mallet,FN,
+20231021_173855_jpg.rf.cfcd1a354af64d53fc4c850928058161.jpg,bottle,FP background,0.31
+20231021_173858_jpg.rf.b1a64fe06d79f57a87e0549cf5343ead.jpg,mallet,FN,
+20231021_174242_jpg.rf.de7304666aaf4ba3fb6f654c95fb228d.jpg,bottle,FP background,0.72
+20231021_175101_jpg.rf.501dc4c6d3d8504e797d24af6de489a7.jpg,mallet,FP loose box,0.42
+20231021_175101_jpg.rf.501dc4c6d3d8504e797d24af6de489a7.jpg,mallet,FN,
+32oz-WM-HDPE-Front-No-USA-copy-3_jpg.rf.2cdf7987d778483009dd19554fca6edb.jpg,bottle,FN,
+32oz-nalgene-water-bottle-639766-copy_jpg.rf.a2d200ebba7831828fe7d30308f5e601.jpg,bottle,FN,
+4fd1127a-58cf-4b5b-8462-6b7689946b3e-901d81fd4542537380da8cb35318f1d7-copy_jpeg_jpg.rf.38da41a0dd2845902d7f6da736bad628.jpg,bottle,FP loose box,0.60
+51HvpIcO3qL-_AC_UF894-1000_QL80__jpg.rf.8d88be6539b42903ad6e200f6668e565.jpg,bottle,FP background,0.25
+51HvpIcO3qL-_AC_UF894-1000_QL80__jpg.rf.8d88be6539b42903ad6e200f6668e565.jpg,mallet,FN,
+649c2e84e53d64b42bfaaf54_Titan-Nalgene-copy_png_jpg.rf.6bfa397f7aac6acbbaf27b20f18709d8.jpg,bottle,FP loose box,0.57
+649c2e84e53d64b42bfaaf54_Titan-Nalgene-copy_png_jpg.rf.6bfa397f7aac6acbbaf27b20f18709d8.jpg,bottle,FN,
+649c2e84e53d64b42bfaaf54_Titan-Nalgene-copy_png_jpg.rf.6bfa397f7aac6acbbaf27b20f18709d8.jpg,bottle,FN,
+656996_blue_nalgene_f_1-copy_jpg.rf.cb3970d2bab0fe688a594595baf26b63.jpg,bottle,FP duplicate,0.32
+8dc15a93-e841-4b0f-9496-3280437da459-228d16a539fdbb245f743bae84820c33-copy-2_jpeg_jpg.rf.90177d0504796a061293acbe6efc5fa6.jpg,bottle,FN,
+DSC01457_700x700-copy_jpg.rf.0db9dbbb54c51664cadfecb03d9a241f.jpg,bottle,FP loose box,0.28
+DSC01457_700x700-copy_jpg.rf.0db9dbbb54c51664cadfecb03d9a241f.jpg,bottle,FN,
+IMG_8996_jpeg_jpg.rf.8b5fefd06a4e9b4d80f448289636eade.jpg,mallet,FN,
+IMG_9175_jpeg_jpg.rf.c542c2177d4b8ff803fc8c8f59a163b1.jpg,bottle,FP background,0.67
+IMG_9178_jpeg_jpg.rf.4a9e3227cd8df500ba9685e029bdf17e.jpg,bottle,FP background,0.73
+IMG_9938-2-copy-2_jpeg_jpg.rf.a0f1e2e47366ab974f66454c0a3c6481.jpg,bottle,FP loose box,0.47
+IMG_9938-2-copy-2_jpeg_jpg.rf.a0f1e2e47366ab974f66454c0a3c6481.jpg,bottle,FN,
+JPEG-image-165_jpeg_jpg.rf.b518d7ddde6155721751495cda470825.jpg,mallet,FN,
+JPEG-image-165_jpeg_jpg.rf.b518d7ddde6155721751495cda470825.jpg,bottle,FN,
+JPEG-image-165_jpeg_jpg.rf.b518d7ddde6155721751495cda470825.jpg,bottle,FN,
+JPEG-image-165_jpeg_jpg.rf.b518d7ddde6155721751495cda470825.jpg,bottle,FN,
+July21_strovtag-e1654636036472_jpg.rf.b286f3ed74b6c51686009d6214778eb2.jpg,bottle,FP loose box,0.81
+July21_strovtag-e1654636036472_jpg.rf.b286f3ed74b6c51686009d6214778eb2.jpg,bottle,FN,
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FP loose box,0.80
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FP loose box,0.80
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FP loose box,0.38
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FN,
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FN,
+KA-Nalgene-Comp-copy-3_jpg.rf.2995b56ee5fe93b40dc686330ceafb42.jpg,bottle,FN,
+Nalgene-August2021-Lifestyle-846-square-copy-2_jpg.rf.e99c5889ed0506b987fd889b725db17b.jpg,bottle,FP loose box,0.55
+Nalgene-August2021-Lifestyle-846-square-copy-2_jpg.rf.e99c5889ed0506b987fd889b725db17b.jpg,bottle,FN,
+NalgeneLogo_cfce4bad-8c19-4d43-807f-45e89a29b57f-copy-3_jpg.rf.5e0e852f3d9231123fe645625bd7ad93.jpg,bottle,FP loose box,0.81
+NalgeneLogo_cfce4bad-8c19-4d43-807f-45e89a29b57f-copy-3_jpg.rf.5e0e852f3d9231123fe645625bd7ad93.jpg,bottle,FN,
+RAEN-Nalgene-Bottle-Glow-In-The-Dark-copy-3_jpeg_jpg.rf.d0fe72adc0037a5a568d122d5c9f5c43.jpg,bottle,FP loose box,0.71
+RAEN-Nalgene-Bottle-Glow-In-The-Dark-copy-3_jpeg_jpg.rf.d0fe72adc0037a5a568d122d5c9f5c43.jpg,bottle,FP loose box,0.51
+RAEN-Nalgene-Bottle-Glow-In-The-Dark-copy-3_jpeg_jpg.rf.d0fe72adc0037a5a568d122d5c9f5c43.jpg,bottle,FN,
+Screenshot-2024-05-28-at-10-02-16-AM-copy-3_png_jpg.rf.c1e5ddb830312ba855197502bc294286.jpg,bottle,FP loose box,0.60
+Screenshot-2024-05-28-at-10-02-16-AM-copy-3_png_jpg.rf.c1e5ddb830312ba855197502bc294286.jpg,bottle,FP loose box,0.44
+Screenshot-2024-05-28-at-10-02-16-AM-copy-3_png_jpg.rf.c1e5ddb830312ba855197502bc294286.jpg,bottle,FP background,0.32
+Screenshot-2024-05-28-at-10-02-16-AM-copy-3_png_jpg.rf.c1e5ddb830312ba855197502bc294286.jpg,bottle,FN,
+Untitled-drawing-19_jpg.rf.d1187695980d7b1c634be4c33544f541.jpg,bottle,FP loose box,0.29
+Untitled-drawing-19_jpg.rf.d1187695980d7b1c634be4c33544f541.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FP background,0.33
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-26_jpg.rf.992f1ba6f2042d707b5de65861c15eb4.jpg,bottle,FN,
+Untitled-drawing-38_jpg.rf.53035fd36c324534caa349e3c5438ea3.jpg,bottle,FN,
+Untitled-drawing-38_jpg.rf.53035fd36c324534caa349e3c5438ea3.jpg,bottle,FN,
+Untitled-drawing-38_jpg.rf.53035fd36c324534caa349e3c5438ea3.jpg,bottle,FN,
+Untitled-drawing-38_jpg.rf.53035fd36c324534caa349e3c5438ea3.jpg,bottle,FN,
+Untitled-drawing-56_jpg.rf.6484eeb1ea8dd6908d6f099f78b49846.jpg,bottle,FN,
+first-lite-32oz-tritan-nalgene-water-bottle_color_hunters-orange-copy-3_jpeg_jpg.rf.e2702aa02b1e0d9b0db92bedd99366d7.jpg,bottle,FP loose box,0.86
+first-lite-32oz-tritan-nalgene-water-bottle_color_hunters-orange-copy-3_jpeg_jpg.rf.e2702aa02b1e0d9b0db92bedd99366d7.jpg,bottle,FN,
+green_nalgene_vid_mp4-175_jpg.rf.25810c255aaf2453465fbd70346c4a3c.jpg,bottle,FP loose box,0.31
+green_nalgene_vid_mp4-175_jpg.rf.25810c255aaf2453465fbd70346c4a3c.jpg,bottle,FN,
+green_nalgene_vid_mp4-179_jpg.rf.a0bc0726503617eb0f4e0c607eabe5a3.jpg,bottle,FP loose box,0.71
+green_nalgene_vid_mp4-179_jpg.rf.a0bc0726503617eb0f4e0c607eabe5a3.jpg,bottle,FN,
+hi_res-12-TheLoyalist_r1_04I_9401-copy-3_jpg.rf.855839a034071d65507afced8f5e3aa0.jpg,bottle,FP background,0.38
+images-2-copy-2_jpeg_jpg.rf.e0b244431c183e1b6781493aff3c10d1.jpg,bottle,FP background,0.69
+mallet-video-Trim_mp4-63_jpg.rf.9c23fc00be922989b48695cb88a34b7d.jpg,bottle,FP background,0.68
+mallet-video-Trim_mp4-63_jpg.rf.9c23fc00be922989b48695cb88a34b7d.jpg,mallet,FN,
+mallet-video-Trim_mp4-77_jpg.rf.604c6abe6628dabfe31754e0b393cad4.jpg,mallet,FN,
+mallet-video-Trim_mp4-79_jpg.rf.5586c1d41cc34c7a2c9e5f113bdd5e51.jpg,bottle,FP background,0.26
+mallet-video-Trim_mp4-79_jpg.rf.5586c1d41cc34c7a2c9e5f113bdd5e51.jpg,mallet,FN,
+mallet-video-Trim_mp4-80_jpg.rf.dd9cc79959b4dd998b596de8d235ff47.jpg,bottle,FP background,0.50
+mallet-video-Trim_mp4-80_jpg.rf.dd9cc79959b4dd998b596de8d235ff47.jpg,mallet,FN,
+mallet-video-Trim_mp4-83_jpg.rf.4ea9c12f807b28c4bc71d999bc4da69a.jpg,mallet,FN,
+mallet-video-Trim_mp4-87_jpg.rf.0f2ed1ee2e9db689422d72293fb0f732.jpg,mallet,FN,
+mallet11_jpg.rf.12a214842356f36e110707ea9b60ab07.jpg,mallet,FP duplicate,0.57
+mallet53_jpeg_jpg.rf.48b24c410fe5e9575e84a6b17de47b04.jpg,bottle,FP background,0.29
+t_bot_mal260_jpeg_jpg.rf.2955b85cce6005e0ee39048fcd04baf1.jpg,bottle,FP loose box,0.28
+t_bot_mal260_jpeg_jpg.rf.2955b85cce6005e0ee39048fcd04baf1.jpg,bottle,FN,
+t_bot_mal318_jpeg_jpg.rf.b8e76d7126c161054b84cb45779950d0.jpg,bottle,FN,
+t_bot_mal325_jpeg_jpg.rf.e6185cca91b695ee1dec868c5cf2fe61.jpg,bottle,FP background,0.72
+t_bot_mal327_jpeg_jpg.rf.0e09a01d30e10acd7beefaadafff0483.jpg,bottle,FN,
+t_bot_mal327_jpeg_jpg.rf.0e09a01d30e10acd7beefaadafff0483.jpg,bottle,FN,
+t_bot_mal363_jpeg_jpg.rf.675d9858e068c95a907cf9288c1eae59.jpg,bottle,FP loose box,0.40
+t_bot_mal372_jpeg_jpg.rf.bfa835f0422c77eb1e139129df5cc840.jpg,bottle,FP background,0.52
+t_bot_mal372_jpeg_jpg.rf.bfa835f0422c77eb1e139129df5cc840.jpg,bottle,FN,
+t_bot_mal401_jpeg_jpg.rf.7373f852e6ec0979b3a04ce39615db11.jpg,mallet,FP background,0.26
+t_bot_mal411_jpeg_jpg.rf.525f31a74c845d476d0a43d80abdc180.jpg,bottle,FN,
+t_bot_mal414_jpeg_jpg.rf.d26381a0d661d857aa20ddd3513b74a6.jpg,mallet,FP background,0.35
+t_bot_mal414_jpeg_jpg.rf.d26381a0d661d857aa20ddd3513b74a6.jpg,bottle,FN,
+t_bot_mal416_jpeg_jpg.rf.7e31de2a095b677222cc91a0ccad5707.jpg,bottle,FN,
+t_bot_mal424_jpeg_jpg.rf.7fbb8d3d53d6ae58ce9c995a537559db.jpg,bottle,FN,
+t_bot_mal441_jpeg_jpg.rf.4960ab59e54758f053a7f1a4ea4c3bea.jpg,bottle,FN,
+t_bot_mal442_jpeg_jpg.rf.c59be05c75ec6b625a6f3fa800950d62.jpg,bottle,FN,
+t_bot_mal443_jpeg_jpg.rf.314f40f09cd79f8df86639f4a3695f38.jpg,mallet,FP wrong class,0.28
+t_bot_mal443_jpeg_jpg.rf.314f40f09cd79f8df86639f4a3695f38.jpg,bottle,FN,
+t_bot_mal472_jpeg_jpg.rf.cca265ac692d21ef5ba7c49dbe1e0a9b.jpg,bottle,FP duplicate,0.77
+t_bot_mal499_jpeg_jpg.rf.0bcdfb1271ce3abfe16f92a893a0fc74.jpg,bottle,FP wrong class,0.89
+t_bot_mal499_jpeg_jpg.rf.0bcdfb1271ce3abfe16f92a893a0fc74.jpg,mallet,FP background,0.28
+t_bot_mal499_jpeg_jpg.rf.0bcdfb1271ce3abfe16f92a893a0fc74.jpg,mallet,FN,
+t_bot_mal505_jpeg_jpg.rf.e8e226c11372b0b14d7a39947ac2d478.jpg,bottle,FP background,0.38
+t_bot_mal505_jpeg_jpg.rf.e8e226c11372b0b14d7a39947ac2d478.jpg,bottle,FN,
+znuio6gzn92dnwl6jmhj_png_jpg.rf.816f22e450ee89dbf25d5ba191582ba8.jpg,mallet,FP loose box,0.83
+znuio6gzn92dnwl6jmhj_png_jpg.rf.816f22e450ee89dbf25d5ba191582ba8.jpg,mallet,FN,
