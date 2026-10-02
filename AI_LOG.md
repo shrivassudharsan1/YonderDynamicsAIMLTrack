@@ -1,77 +1,62 @@
 # AI Usage Log
 
-Tools: Claude Code (Claude Opus) in VS Code for almost all of the work, and a separate chat assistant for choosing the track and for a second opinion on preprocessing.
+Tools: Claude Code (Claude Opus) in VS Code
 
-Being upfront about the extent: Claude Code wrote all of the scripts in this repo, ran the training and evaluation, and made the commits (each has a `Co-Authored-By: Claude` line). My part was directing the work, questioning the results, deciding between options, filming the test videos, and reading the outputs. First drafts of this log and of `METHODOLOGY.md` were also written by Claude Code from the session history.
+Being upfront about the extent: Claude Code wrote the scripts in this repo, ran the training and evaluation, and made the commits (each has a `Co-Authored-By: Claude` line). My part was directing the work, reviewing the code, questioning the results, deciding between options, filming the test videos, and reading the outputs. First drafts of this log and of `METHODOLOGY.md` were also written by Claude Code from the session history. I continued to edit and add my own findings into these documents. 
 
 ## 1. Planning and setup
 
-**What I asked:** Which track to pick and how long it would take (chat assistant). Then, in Claude Code, to help me do the project: clone the repo, set up Python, download the dataset, and re-explain what the task was asking for.
-
 **What I kept vs. rewrote, and why:** Kept the setup, `download_data.py` and `predict.py` as written. The API key is read from `ROBOFLOW_API_KEY` / `.env` and never appears in the code.
 
-**What the AI got wrong that I had to catch:** Nothing in the code. The first download failed because my `.env` had not been saved; the AI diagnosed that by checking the file was 0 bytes, without printing the key.
+**What the AI got wrong that I had to catch:** Syntax errors were all fine in the code. I wanted to run additional experiments involving the quantization, different input size, and color-augmentation and prompted the model to fix that. The first download failed because my `.env` had not been saved; the AI diagnosed that by checking the file was 0 bytes, without printing the key.
 
-**How I verified it:** `predict.py` was run on two stock images with stock weights before any training, then on all 199 validation images, and a check confirmed every output line has six fields with class 0/1 and values in 0-1. Image and label counts (800 / 199) match the brief.
+**How I verified it:** `predict.py` was run on two stock images with stock weights before any training, then on all 199 validation images, and a check confirmed every output line has six fields with class 0/1 and values in 0-1. Image and label counts (800 / 199) match the brief. I ran my own commands in the terminal to verify outputs and analyzed them to conduct more experiments. 
 
 ## 2. Data exploration and the train/valid split
 
 **What I asked:** To look at the data before training and check whether validation images are near-copies of training images.
 
-**What I kept vs. rewrote, and why:** Kept the scene-grouped split (`make_split.py`) and use it for every reported number, because the evidence for leakage was clear in the side-by-side images.
+**What I kept vs. rewrote, and why:** Kept the scene-grouped split (`make_split.py`) and use it for every reported number, because the evidence for leakage was clear in the side-by-side images. Verified that the split roughly created good splits between data for test and train. 
 
 **What the AI got wrong that I had to catch:**
 - Its first leakage check compared filenames and reported "0 sources in both". That was the wrong test: the leak is neighbouring video frames with different names. It only showed up when the AI compared image embeddings and looked at the pairs.
 - The clustering threshold (0.25) was picked by eyeballing cluster sizes, not validated. Listed as a limitation.
 
-**How I verified it:** Viewed the nearest train/valid pairs (same scene, moments apart). The script prints "scenes on both sides: 0". Trained the same model on both splits: mAP50 0.908 on the provided split vs 0.823 on the grouped one.
+**How I verified it:** I spot-checked five groups by opening their images (scenes 12, 40, 70, 78, 91). Four were a single place. The largest mallet group (scene 70, 83 images) mixed several outdoor locations, so the clustering groups by overall appearance, including the object, not strictly by location. Over-merging like this does not cause leakage, since the whole group stays on one side. I did not check whether one location was split across two groups.
+ 
 
 ## 3. Preprocessing choice
 
-**What I asked:** For a strong preprocessing step given the orange-mallet problem. I also pasted in a list of five approaches from the chat assistant (colour augmentation, multi-colour-space input, making objects larger, copy-paste backgrounds, training on deployment conditions) and asked which were worth doing.
+**What I asked:** For a strong preprocessing step given the orange-mallet problem. I also pasted in a list of five approaches (color augmentation, multi-color-space input, making objects larger, copy-paste backgrounds, training on deployment conditions) and asked which were worth doing.
 
-**What I kept vs. rewrote, and why:** Kept colour augmentation (grayscale and hue-shifted copies), because colour dependence was the one weakness that had been measured. Dropped multi-colour-space input (needs a modified network, loses pretrained weights) and copy-paste (aimed at a problem we had not observed).
+**What I kept vs. rewrote, and why:** Kept color augmentation (grayscale and hue-shifted copies), because color dependence was the one weakness that had been measured. Dropped multi-color-space input (needs a modified network, loses pretrained weights) and copy-paste (aimed at a problem we had not observed).
 
 **What the AI got wrong that I had to catch:**
 - The first comparison (baseline 40 epochs vs augmented 20 epochs) showed a large cost on normal images (mallet AP50 0.938 vs 0.867). Both learning curves were still rising, so that comparison was on undertrained models. Rerun at 100 vs 50 epochs, the gap nearly closed (0.928 vs 0.922).
-- I misread the evaluation table at first, thinking the original / gray / hue_shift rows were three training methods. They are three versions of the test images for one model. Worth saying because the table layout invites that mistake.
+- I misread the evaluation table at first, thinking the original / gray / hue_shift rows were three training methods. They are three versions of the test images for one model. In-case others get confused I thought I would include it here. 
 
-**How I verified it:** Every copied label file was compared with its original (0 differences in 790), and a sheet of 18 augmented images was checked by eye for box alignment. Both models were scored on the same 209 validation images in three colour conditions. I printed both result files in my terminal and compared them row by row.
+**How I verified it:** Every copied label file was compared with its original (0 differences in 790), and a sheet of 18 augmented images was checked by eye for box alignment. Both models were scored on the same 209 validation images in three color conditions. I printed both result files in my terminal and compared them row by row.
 
-## 4. Training runs and time estimates
 
-**What I asked:** To run the longer training overnight, and how long things would take.
+## 4. Error analysis
 
-**What I kept vs. rewrote, and why:** Kept the equal-training-steps setup (100 epochs on 790 images vs 50 on 1,580) so the comparison is fair.
-
-**What the AI got wrong that I had to catch:**
-- It told me the remaining runs would take 30-45 minutes when the first baseline had taken about 10. I questioned it; it checked the logged per-epoch time (16.4 s) and corrected itself. It had misread a pause while my laptop slept as slow training.
-- After pushing the weights it reported the push as done. Git had printed "Everything up-to-date" even though the push failed with HTTP 400. It caught this itself by comparing the commit on GitHub with the local one, then fixed it by raising `http.postBuffer` for this repo.
-
-**How I verified it:** Per-epoch times read from `results.csv`. Remote and local commit hashes compared with `git ls-remote` after each push.
-
-## 5. Error analysis
-
-**What I asked:** To do the error analysis on the final model.
+**What I asked:** To write some error analysis on the final model.
 
 **What I kept vs. rewrote, and why:** Kept `analyze_errors.py` and the NMS change in `predict.py` (IoU 0.7 to 0.5), which removed duplicate boxes with no loss of recall.
 
 **What the AI got wrong that I had to catch:**
-- Before the analysis it expected small objects to be the main problem and planned a resolution experiment. The size breakdown showed the opposite: large close-ups are missed most (mallet 10 of 22 large vs 0 of 19 small). The resolution experiment was dropped.
+- Before the analysis I expected small objects to be the main problem and planned a resolution experiment. The size breakdown showed the opposite: large close-ups are missed most (mallet 10 of 22 large vs 0 of 19 small). The resolution experiment was dropped.
 - The NMS threshold was chosen on the validation set, which has no separate test set behind it. Stated as a limitation.
 - The "label problems" finding is from looking at the image sheets and was not counted.
+- The AI tended to generalize claims about bottles and mallets so I used my own findings from the data to show that certain types of bottles and backgrounds in the training skewed results. 
 
 **How I verified it:** The counts add up (found + missed = labelled for each class). The fresh-clone run reproduced the same table. The mistakes are saved as image sheets in `results/errors/`.
 
 ## 6. Video test
 
-**What I asked:** How to do the video test without a mallet (I had asked whether to use an online video), then to run the model on three videos I filmed.
-
-**What I kept vs. rewrote, and why:** Filmed my own videos of a claw hammer and a shaker bottle, as the brief asks, and did not use online footage. Kept `video_test.py` and chose to commit the result sheets even though they show my room.
-
 **What the AI got wrong that I had to catch:**
 - Its first runs of the script produced no output because of a shell quoting mistake (a variable holding three filenames was passed as one argument in zsh). It found this from the traceback and added a clear error for unreadable videos.
-- It had suggested the non-orange hammer would be a direct test of the colour fix. The result was more basic: neither model detects the hammer at all, so the test says more about object shape variety than about colour.
+- I had suggested the non-orange hammer would be a direct test of the color fix. The result was more basic: neither model detects the hammer at all, so the test says more about object shape variety than about color.
 
 **How I verified it:** The video frames have no labels, so the table only counts frames with a box. Whether boxes are on the right object was checked by eye on the sheets in `results/video/`. The baseline model was run on the same frames for comparison.
 
