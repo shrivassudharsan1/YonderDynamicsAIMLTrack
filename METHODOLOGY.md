@@ -27,7 +27,7 @@ bash run_all.sh                        # download, split, preprocess, evaluate, 
 
 - The dataset download reads the key from the **`ROBOFLOW_API_KEY`** environment variable (or `.env`).
 - `bash run_all.sh` uses the committed weights (`weights/best.pt`, 6 MB) and takes about a minute after the download. `bash run_all.sh --train` retrains the final model first (about 25 minutes on the M4 Max GPU).
-- If `python3` is older than 3.12, run `PYTHON=python3.13 bash setup.sh`.
+- `setup.sh` picks the first of `python3.13`, `python3.12`, `python3` that is 3.12 or newer. To force one: `PYTHON=/path/to/python bash setup.sh`.
 
 **Inference on a folder of images:**
 
