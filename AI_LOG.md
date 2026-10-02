@@ -52,7 +52,7 @@ Being upfront about the extent: Claude Code wrote the scripts in this repo, ran 
 
 **How I verified it:** The counts add up (found + missed = labelled for each class). The fresh-clone run reproduced the same table. The mistakes are saved as image sheets in `results/errors/`.
 
-## 6. Video test
+## 5. Video test
 
 **What the AI got wrong that I had to catch:**
 - Its first runs of the script produced no output because of a shell quoting mistake (a variable holding three filenames was passed as one argument in zsh). It found this from the traceback and added a clear error for unreadable videos.
@@ -60,7 +60,7 @@ Being upfront about the extent: Claude Code wrote the scripts in this repo, ran 
 
 **How I verified it:** The video frames have no labels, so the table only counts frames with a box. Whether boxes are on the right object was checked by eye on the sheets in `results/video/`. The baseline model was run on the same frames for comparison.
 
-## 7. Efficiency and hard example mining
+## 6. Efficiency and hard example mining
 
 **What I asked:** To do the model-efficiency stretch goal, then the hard-example one.
 
@@ -74,7 +74,7 @@ Being upfront about the extent: Claude Code wrote the scripts in this repo, ran 
 
 **How I verified it:** Timing was run three times; results agree within a few ms except at 416 and 512, so those are reported as ranges. Accuracy at 640 matches the evaluation table.
 
-## 8. Reproducibility and write-up
+## 7. Reproducibility and write-up
 
 **What I asked:** To draft the run scripts and both documents.
 
