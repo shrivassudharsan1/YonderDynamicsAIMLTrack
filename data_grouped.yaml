@@ -1,0 +1,9 @@
+# Scene-grouped split built by make_split.py (no scene appears in both train and valid).
+# Paths are relative to this file.
+train: data/grouped/train/images
+val: data/grouped/valid/images
+
+nc: 2
+names:
+  0: bottle
+  1: mallet
