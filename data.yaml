@@ -1,0 +1,9 @@
+# Dataset config for training. Points at the read-only Roboflow download
+# (run download_data.py first). Paths are relative to this file.
+train: Sampled-YD-Object-Detection-2/train/images
+val: Sampled-YD-Object-Detection-2/valid/images
+
+nc: 2
+names:
+  0: bottle
+  1: mallet
