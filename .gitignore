@@ -17,3 +17,6 @@ runs/
 *.mov
 *.mp4
 video_frames/
+
+# output of run_all.sh / predict.py
+predictions/
