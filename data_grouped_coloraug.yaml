@@ -1,0 +1,10 @@
+# Colour-augmented training set built by preprocess.py, validated on the SAME
+# untouched scene-grouped validation images as data_grouped.yaml.
+# Paths are relative to this file.
+train: data/grouped_coloraug/train/images
+val: data/grouped/valid/images
+
+nc: 2
+names:
+  0: bottle
+  1: mallet
