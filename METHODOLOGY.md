@@ -51,6 +51,7 @@ Each step on its own:
 | video test | `python video_test.py <video files>` | `results/video/` |
 | efficiency | `python efficiency.py` | `results/efficiency.md` |
 | hard examples | `python mine_hard_examples.py` | `results/hard_examples/` |
+| quantization | `python quantize.py` | `results/quantization.md` |
 
 Every number below comes from a file in `results/`. A fresh clone plus `setup.sh` and `run_all.sh` reproduced the evaluation and error-analysis tables exactly. Retraining will not give identical weights (MPS training is not deterministic), so expect small differences if you use `--train`.
 
@@ -160,7 +161,19 @@ Three phone videos (1080x1920, about 20 s each) in a dorm room on a concrete flo
 - Timings are wall-clock for the whole predict call on an M4 Max CPU, batch 1. They are **not** NPU numbers; only the relative trend is meaningful. The ranges are the spread over three runs.
 - The jump from 320 to 416 is bigger than the pixel count explains. It repeated, and I do not know why.
 - Trade-off: input size is the cheapest knob. 320 is about four times faster and costs 0.05 mAP50, mostly on mallets. For a rover that approaches the object, a lower resolution may be acceptable because the object gets bigger as it gets closer, but far-range detection suffers first.
-- For the RKNN NPU, the next steps would be ONNX export and INT8 quantization with a calibration set drawn from real field frames, then re-running `evaluate.py` on the quantized model, since quantization can hurt small-object accuracy. **Not attempted here.**
+
+**Quantization attempt** (`quantize.py`, `results/quantization.md`). The model was exported to ONNX and quantized to 8-bit integers with ONNX Runtime, calibrated on 200 training images, then scored on the same validation set:
+
+| model | file size | bottle AP50 | mallet AP50 | mAP50 | mAP50-95 |
+|---|---|---|---|---|---|
+| ONNX, 32-bit float | 12.3 MB | 0.713 | 0.900 | 0.806 | 0.441 |
+| INT8, every layer | 3.4 MB | 0.000 | 0.000 | 0.000 | 0.000 |
+| INT8, box decoding kept in float | 3.5 MB | 0.706 | 0.909 | 0.808 | 0.429 |
+
+- Quantizing everything destroys the model. The end of the detection head puts box coordinates (0 to 640) and class scores (0 to 1) in one output tensor, and one 8-bit scale cannot represent both: the scores round to zero.
+- Leaving that box-decoding step in float and quantizing the convolutions gives a model 3.5x smaller than the float ONNX file with no loss in mAP50 (0.808 vs 0.806) and a small loss in mAP50-95 (0.429 vs 0.441), meaning slightly less precise boxes.
+- The float ONNX model scores 0.806, not the 0.815 reported above, because it takes a fixed 640x640 input. The PyTorch model scores the same 0.806 with that setting.
+- Not done: conversion to RKNN, running on the NPU, or timing. ONNX Runtime on a laptop CPU is not the NPU's integer pipeline, so this shows the accuracy survives 8-bit convolutions, not that the RKNN conversion will behave the same.
 
 ### Stretch: hard example mining
 
@@ -186,7 +199,7 @@ Three phone videos (1080x1920, about 20 s each) in a dorm room on a concrete flo
 - **Weak on close-ups and tiny objects**, and bottle recall is only 0.69.
 - **Video test has no labels**; correctness there is judged by eye.
 - **Label noise was observed, not fixed.** Relabelled data would go in a new folder.
-- **Efficiency numbers are from a laptop**, and no quantization or NPU export was done.
+- **Efficiency numbers are from a laptop.** Quantization was tested with ONNX Runtime only; no RKNN export and nothing was run on the NPU.
 - **Only YOLOv8n at default hyperparameters** was tried.
 
 What I would do next: collect the data listed above, fix the labels, hold out a test set of whole scenes, and repeat the comparison over several seeds.

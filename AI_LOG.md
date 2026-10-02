@@ -79,12 +79,13 @@ Being upfront about the extent: Claude Code wrote all of the scripts in this rep
 
 **What I asked:** To do the model-efficiency stretch goal, then the hard-example one.
 
-**What I kept vs. rewrote, and why:** Kept both scripts and their tables. Did not attempt quantization.
+**What I kept vs. rewrote, and why:** Kept both scripts and their tables. I asked what quantization was (I had assumed it meant testing on the club's hardware; it means converting the model to 8-bit numbers) and then had the AI attempt it with ONNX Runtime.
 
 **What the AI got wrong that I had to catch:**
 - The first timing table showed the GPU at 1.9 ms for every input size. That was a measurement error: the Apple GPU runs asynchronously and the library's timer does not wait for it. Replaced with wall-clock timing of the whole predict call.
 - The script crashed on its first run because a library call returned nothing in this version; fixed by counting parameters directly.
 - CPU time jumps more than expected between 320 and 416. It repeats, and the cause is unknown. Reported as is.
+- Quantizing every layer gave an mAP of exactly 0. The AI had anticipated this and ran a second version that keeps the box-decoding step in float, which works. The float ONNX model also scored slightly below the PyTorch model (0.806 vs 0.815); it checked the cause (fixed square input) by scoring the PyTorch model the same way and getting the same 0.806.
 
 **How I verified it:** Timing was run three times; results agree within a few ms except at 416 and 512, so those are reported as ranges. Accuracy at 640 matches the evaluation table.
 
