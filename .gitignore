@@ -11,3 +11,9 @@ runs/
 *.pt
 !weights/*.pt
 .DS_Store
+
+# phone videos and extracted frames for the real-world test
+*.MOV
+*.mov
+*.mp4
+video_frames/
