@@ -16,6 +16,7 @@ Writes results/errors/summary.md plus image sheets of the misses and false alarm
 """
 
 import argparse
+import csv
 import os
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -27,6 +28,7 @@ from ultralytics import YOLO
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "results" / "errors"
+MANIFEST = ROOT / "splits" / "grouped_split.csv"
 IOU_MATCH = 0.5
 IOU_LOOSE = 0.1
 SIZE_BINS = [(0, 0.002, "tiny (<0.2% of image)"), (0.002, 0.01, "small (0.2-1%)"), (0.01, 0.05, "medium (1-5%)"), (0.05, 2, "large (>5%)")]
@@ -128,6 +130,13 @@ def main():
     outcome_counts = defaultdict(Counter)  # class -> outcome -> n
     fn_by_size = defaultdict(Counter)      # class -> size bin -> [missed]
     gt_by_size = defaultdict(Counter)
+    loose_misses = Counter()               # class -> misses that had a same-class box with IoU 0.1-0.5
+    fn_by_scene = defaultdict(Counter)     # class -> scene -> [missed]
+    gt_by_scene = defaultdict(Counter)
+    scene_of = {}
+    if MANIFEST.exists():
+        with MANIFEST.open() as f:
+            scene_of = {row["image"]: row["scene"] for row in csv.DictReader(f)}
     sheets = defaultdict(list)
     rows = []
 
@@ -145,10 +154,15 @@ def main():
             if outcome != "TP":
                 rows.append((image_path.name, names[cls], outcome, f"{conf:.2f}"))
         for (cls, box), hit in zip(labels, matched):
+            scene = scene_of.get(image_path.name, "?")
             gt_by_size[cls][size_bin(box)] += 1
+            gt_by_scene[cls][scene] += 1
             if not hit:
                 outcome_counts[cls]["FN"] += 1
                 fn_by_size[cls][size_bin(box)] += 1
+                fn_by_scene[cls][scene] += 1
+                if any(c == cls and iou(box, b) >= IOU_LOOSE for c, b, _ in preds):
+                    loose_misses[cls] += 1
                 rows.append((image_path.name, names[cls], "FN", ""))
 
         missed = sorted({names[c] for (c, _), hit in zip(labels, matched) if not hit})
@@ -172,6 +186,14 @@ def main():
     lines += ["", "Misses by object size (missed / labelled):", "", "| class | " + " | ".join(n for *_, n in SIZE_BINS) + " |", "|---|" + "---|" * len(SIZE_BINS)]
     for cls, name in names.items():
         lines.append(f"| {name} | " + " | ".join(f"{fn_by_size[cls][n]} / {gt_by_size[cls][n]}" for *_, n in SIZE_BINS) + " |")
+
+    lines += ["", "Misses that still had a same-class box on them (IoU 0.1-0.5), so they are loose boxes rather than unseen objects:", ""]
+    for cls, name in names.items():
+        lines.append(f"- {name}: {loose_misses[cls]} of {outcome_counts[cls]['FN']} misses")
+    lines += ["", "Scenes with the most misses (missed / labelled in that scene; scene ids from splits/grouped_split.csv):", ""]
+    for cls, name in names.items():
+        worst = sorted(fn_by_scene[cls].items(), key=lambda kv: -kv[1])[:5]
+        lines.append(f"- {name}: " + ", ".join(f"scene {scene} {n} / {gt_by_scene[cls][scene]}" for scene, n in worst))
 
     summary = "\n".join(lines)
     print(summary)
