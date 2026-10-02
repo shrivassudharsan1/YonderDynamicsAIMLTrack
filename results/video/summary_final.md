@@ -1,4 +1,4 @@
-Weights `/Users/shrivassudharsan/YonderDynamicsAI/weights/best.pt`, conf >= 0.25, NMS IoU 0.5, frames at phone aspect ratio
+Weights `weights/best.pt`, conf >= 0.25, NMS IoU 0.5, frames at phone aspect ratio
 
 | video | frames | with a mallet box | with a bottle box | with no box | mean top mallet conf | mean top bottle conf |
 |---|---|---|---|---|---|---|

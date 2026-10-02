@@ -9,6 +9,7 @@ Writes results/efficiency.md.
 """
 
 import argparse
+import os
 import time
 from pathlib import Path
 
@@ -50,7 +51,7 @@ def main():
     params = sum(p.numel() for p in model.model.parameters())
     gflops = get_flops(model.model, 640)
     lines = [
-        f"Weights `{args.weights}`: {params:,} parameters, {gflops:.1f} GFLOPs at 640, "
+        f"Weights `{os.path.relpath(args.weights, ROOT)}`: {params:,} parameters, {gflops:.1f} GFLOPs at 640, "
         f"{args.weights.stat().st_size / 1e6:.1f} MB on disk (FP16 checkpoint)",
         "",
         f"Timing: mean wall-clock time per image for the full predict call (resize + forward pass + NMS), batch 1, {len(images)} validation images, torch {torch.__version__}.",

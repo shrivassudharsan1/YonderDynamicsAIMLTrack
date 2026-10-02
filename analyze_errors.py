@@ -16,6 +16,7 @@ Writes results/errors/summary.md plus image sheets of the misses and false alarm
 """
 
 import argparse
+import os
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -157,7 +158,7 @@ def main():
         if false_alarms:
             sheets["false_positives"].append(draw(image_path, labels, preds, names, ", ".join(false_alarms)))
 
-    lines = [f"Weights `{args.weights}`, data `{args.data.name}`, {len(images)} images, confidence >= {args.conf}, NMS IoU {args.nms_iou}, match IoU >= {IOU_MATCH}", ""]
+    lines = [f"Weights `{os.path.relpath(args.weights, ROOT)}`, data `{args.data.name}`, {len(images)} images, confidence >= {args.conf}, NMS IoU {args.nms_iou}, match IoU >= {IOU_MATCH}", ""]
     lines += ["| class | labelled | TP | FN | FP | precision | recall |", "|---|---|---|---|---|---|---|"]
     for cls, name in names.items():
         c = outcome_counts[cls]

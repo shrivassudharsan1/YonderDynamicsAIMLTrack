@@ -13,6 +13,7 @@ and hardest.jpg (the lowest-scoring images; green = label, red = prediction).
 """
 
 import argparse
+import os
 import csv
 from collections import defaultdict
 from pathlib import Path
@@ -76,7 +77,7 @@ def main():
 
     missed = sum(r["confidence"] < DEPLOY_CONF for r in rows)
     lines = [
-        f"Weights `{args.weights}`, {len(per_image)} training images, {len(rows)} labelled objects.",
+        f"Weights `{os.path.relpath(args.weights, ROOT)}`, {len(per_image)} training images, {len(rows)} labelled objects.",
         f"{missed} objects ({missed / len(rows):.1%}) would be missed at the deployment threshold "
         f"(best matching confidence < {DEPLOY_CONF}), on images the model was trained on.",
         "",

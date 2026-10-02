@@ -1,4 +1,4 @@
-Weights `/Users/shrivassudharsan/YonderDynamicsAI/weights/best.pt`, 790 training images, 969 labelled objects.
+Weights `weights/best.pt`, 790 training images, 969 labelled objects.
 29 objects (3.0%) would be missed at the deployment threshold (best matching confidence < 0.25), on images the model was trained on.
 
 By class and object size (objects below the threshold / objects, mean confidence):

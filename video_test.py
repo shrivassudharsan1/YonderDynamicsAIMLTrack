@@ -13,6 +13,7 @@ training images ("Resize: Stretch"), instead of keeping the phone's aspect ratio
 """
 
 import argparse
+import os
 from pathlib import Path
 
 import cv2
@@ -70,7 +71,7 @@ def main():
     model = YOLO(str(args.weights))
     OUT.mkdir(parents=True, exist_ok=True)
     lines = [
-        f"Weights `{args.weights}`, conf >= {args.conf}, NMS IoU {args.iou}, "
+        f"Weights `{os.path.relpath(args.weights, ROOT)}`, conf >= {args.conf}, NMS IoU {args.iou}, "
         f"{'frames stretched to 512x512' if args.stretch else 'frames at phone aspect ratio'}",
         "",
         "| video | frames | with a mallet box | with a bottle box | with no box | mean top mallet conf | mean top bottle conf |",

@@ -1,4 +1,4 @@
-Weights `/Users/shrivassudharsan/YonderDynamicsAI/weights/best.pt`, data `data_grouped.yaml`, 209 images, confidence >= 0.25, NMS IoU 0.5, match IoU >= 0.5
+Weights `weights/best.pt`, data `data_grouped.yaml`, 209 images, confidence >= 0.25, NMS IoU 0.5, match IoU >= 0.5
 
 | class | labelled | TP | FN | FP | precision | recall |
 |---|---|---|---|---|---|---|
